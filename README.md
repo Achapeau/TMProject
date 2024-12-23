@@ -72,7 +72,7 @@ const config: Config = {
   testEnvironment: "jsdom",
 };
 
-export default config;
+export default nextJest(config);
 ```
 
 4. **Optionnel** :
@@ -150,7 +150,7 @@ const config: Config = {
   testEnvironment: "jsdom",
 };
 
-export default config;
+export default nextJest(config);
 ```
 
 4. **Optional** :
