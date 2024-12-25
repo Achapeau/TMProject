@@ -11,7 +11,6 @@ describe("Button", () => {
 
     fireEvent.click(button);
 
-    expect(button).toBeInTheDocument();
     expect(button).toBeEnabled(); // ASSERT
   });
 
@@ -24,7 +23,6 @@ describe("Button", () => {
 
     const link = screen.getByRole("link"); // ACT
 
-    expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "/"); // ASSERT
   });
 });

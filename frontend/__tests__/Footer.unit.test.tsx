@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/";
 import { render, screen } from "@testing-library/react";
-import { Footer } from "@/_components/footer";
+import { Footer } from "@/app/(marketing)/_components/footer";
 
 describe("Footer", () => {
   it("should render successfully policy and terms links", () => {

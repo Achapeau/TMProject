@@ -12,7 +12,10 @@ describe("Logo", () => {
       name: /Logo french task manager/i,
     }); // ACT
 
-    expect(image).toHaveAttribute("src", "/logo.png");
+    expect(image).toHaveAttribute(
+      "src",
+      "/_next/image?url=%2Fimages%2Flogo.png&w=64&q=75"
+    );
     expect(image).toHaveAttribute("alt", "Logo french task manager"); // ASSERT
   });
 
@@ -27,7 +30,10 @@ describe("Logo", () => {
   it("doesn't render the title when hideTitle is true", () => {
     setup({ hideTitle: true }); // ARRANGE
 
-    const title = screen.queryByRole("heading", { level: 1 }); // ACT
+    const title = screen.queryByRole("heading", {
+      level: 1,
+      name: /french task manager/i,
+    }); // ACT
 
     expect(title).not.toBeInTheDocument(); // ASSERT
   });
