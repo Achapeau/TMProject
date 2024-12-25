@@ -22,15 +22,19 @@ const MarketingPage = () => {
           "flex items-center justify-center flex-col",
           headingFont.className
         )}>
-        <div className='mb-4 flex items-center uppercase border shadow-sm rounded-full bg-amber-100 text-amber-700 p-4'>
+        <div
+          className={cn(
+            "mb-4 flex items-center uppercase border shadow-sm rounded-full bg-amber-100 text-amber-700 p-4",
+            bodyFont.className
+          )}>
           <Medal className='h-6 w-6 mr2' />
-          N° 1 task managment
+          La référence pour organiser vos tâches
         </div>
         <h1 className='marketing-heading text-3xl md:text-6xl text-center text-neutral-800 mb-6'>
-          FTM helps you manage your tasks
+          FTM vous aide à gérer vos projets
         </h1>
         <div className='txt-3xl md:text-6xl text-center bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-4 p-2 rounded-md pb-4 w-fit'>
-          more efficiently!
+          plus efficacement!
         </div>
       </div>
       <div
@@ -39,13 +43,17 @@ const MarketingPage = () => {
           bodyFont.className
         )}
         title='Marketing description'>
-        Collaborate, manage projects, and reach new productivity peaks. From
-        high rises to the home office, the way your team works is unique -
-        accomplish it all with French Task Manager.
+        Organisez vos tâches personnelles efficacement avec French Task Manager.
+        Une application intuitive, responsive et adaptée à vos besoins.
+        Planifiez, gérez et synchronisez vos objectifs en un clin d'œil.
+        Simplifiez votre quotidien avec des fonctionnalités pensées pour vous.
       </div>
       <Button className='mt-6' size='lg' asChild>
-        <Link href='/sign_up' title='Inscription'>
-          Get FTM for free
+        <Link
+          href='/sign_up'
+          title='Inscription'
+          className={bodyFont.className}>
+          Obtenez FTM gratuitement
         </Link>
       </Button>
     </div>

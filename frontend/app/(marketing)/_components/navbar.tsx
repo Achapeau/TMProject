@@ -11,16 +11,16 @@ export const Navbar = ({ isConnected }: { isConnected?: boolean }) => {
         {!isConnected ? (
           <div className='space-x-4 md:block md:w-auto flex items-center justify-between w-full'>
             <Button size='sm' variant='outline' asChild>
-              <Link href='/sign-in'>Sign in</Link>
+              <Link href='/sign-in'>Connexion</Link>
             </Button>
             <Button>
-              <Link href='/sign-up'>Sign up</Link>
+              <Link href='/sign-up'>Inscription</Link>
             </Button>
           </div>
         ) : (
           <div>
             <Button size='sm' asChild>
-              <Link href='/log-out'>Log out</Link>
+              <Link href='/log-out'>Déconnexion</Link>
             </Button>
           </div>
         )}

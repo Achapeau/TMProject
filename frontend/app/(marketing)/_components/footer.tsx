@@ -8,10 +8,10 @@ export const Footer = () => {
         <Logo />
         <div className='space-x-4 md:block md:w-auto flex items-center justify-between w-full'>
           <Button size='sm' variant='ghost'>
-            Privacy Policy
+            Politique de confidentialité
           </Button>
           <Button size='sm' variant='ghost'>
-            Terms of Service
+            Conditions d'utilisation
           </Button>
         </div>
       </div>
