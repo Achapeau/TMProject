@@ -48,9 +48,9 @@ const MarketingPage = () => {
         Planifiez, gérez et synchronisez vos objectifs en un clin d'œil.
         Simplifiez votre quotidien avec des fonctionnalités pensées pour vous.
       </div>
-      <Button className='mt-6' size='lg' asChild>
+      <Button className='mt-6' size='lg' aria-label='Inscription' asChild>
         <Link
-          href='/sign_up'
+          href='/sign-up'
           title='Inscription'
           className={bodyFont.className}>
           Obtenez FTM gratuitement
