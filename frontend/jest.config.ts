@@ -12,6 +12,10 @@ const config: Config = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   testEnvironment: "jsdom",
+  moduleNameMapper: {
+    "^@clerk/nextjs$": "<rootDir>/__mocks__/@clerk/nextjs.js",
+    "^@next/navigation$": "<rootDir>/__mocks__/next/navigation.js",
+  },
 };
 
 export default createJestConfig(config);
