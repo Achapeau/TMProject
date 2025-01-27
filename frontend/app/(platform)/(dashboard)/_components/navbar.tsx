@@ -2,7 +2,7 @@ import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
-import { root } from "postcss";
+import { dark, shadesOfPurple } from "@clerk/themes";
 
 export const Navbar = () => {
   return (
@@ -31,7 +31,6 @@ export const Navbar = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "gray",
                 borderRadius: "0.5rem",
               },
               avatarBox: {
