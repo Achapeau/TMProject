@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 import { dark, shadesOfPurple } from "@clerk/themes";
+import { MobileSidebar } from "./mobile-sidebar";
 
 export const Navbar = () => {
   return (
     <nav className='fixed z-50 top-0 w-full h-14 px-4 border-b shadow-sm bg-white flex items-center'>
-      {/* TODO: Mobile sidebar */}
+      <MobileSidebar />
       <div className='flex items-center gap-x-4'>
         <div className='hidden md:flex'>
           <Logo />
