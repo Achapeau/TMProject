@@ -18,7 +18,7 @@ export const Info = () => {
         <Image
           sizes='sm'
           fill
-          src={organization?.imageUrl! || ""}
+          src={organization?.imageUrl!}
           alt='Organization'
           className='rounded-sm object-cover'
         />
