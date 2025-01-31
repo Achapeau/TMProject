@@ -74,6 +74,7 @@ export const NavItem = ({
           <div className='w-7 h-7 relative'>
             <Image
               fill
+              sizes='sm'
               src={organization.imageUrl}
               alt={organization.name}
               className='object-cover rounded-sm'

@@ -13,6 +13,7 @@ export const Logo = ({ hideTitle }: { hideTitle?: boolean }) => {
     <Link href='/'>
       <div className='hover:opacity-75 transition items-center  gap-x-2 hidden md:flex'>
         <Image
+          sizes='100%'
           src='/images/logo.png'
           alt='Logo french task manager'
           width={30}
