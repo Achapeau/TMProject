@@ -5,11 +5,12 @@ import { auth } from "@clerk/nextjs/server";
 import { title } from "process";
 import { BoardNavbar } from "./_components/board-navbar";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { boardId: string };
-}) {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ boardId: string }>;
+  }
+) {
+  const params = await props.params;
   const { orgId } = await auth();
 
   if (!orgId) {
@@ -27,13 +28,18 @@ export async function generateMetadata({
   };
 }
 
-const BoardIdLayout = async ({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { boardId: string };
-}) => {
+const BoardIdLayout = async (
+  props: {
+    children: React.ReactNode;
+    params: Promise<{ boardId: string }>;
+  }
+) => {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const { orgId } = await auth();
 
   if (!orgId) {
