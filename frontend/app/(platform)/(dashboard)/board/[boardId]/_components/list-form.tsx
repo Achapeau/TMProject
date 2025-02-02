@@ -6,7 +6,7 @@ import { useEventListener, useOnClickOutside } from "usehooks-ts";
 import { useParams, useRouter } from "next/navigation";
 import { RefObject, useRef, useState } from "react";
 
-import { createList } from "@/actions/create list";
+import { createList } from "@/actions/create-list";
 import { useAction } from "@/hooks/use-action";
 
 import { FormInput } from "@/components/form/form-input";
