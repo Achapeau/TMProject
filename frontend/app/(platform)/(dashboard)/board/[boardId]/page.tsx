@@ -6,10 +6,11 @@ import { db } from "@/lib/db";
 import { ListContainer } from "./_components/list-container";
 
 interface BoardIdPageProps {
-  params: { boardId: string };
+  params: Promise<{ boardId: string }>;
 }
 
-const BoardIdPage = async ({ params }: BoardIdPageProps) => {
+const BoardIdPage = async (props: BoardIdPageProps) => {
+  const params = await props.params;
   const { orgId } = await auth();
 
   if (!orgId) return redirect("/select-org");
