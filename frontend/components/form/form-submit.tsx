@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 interface FormSubmitProps {
   children: React.ReactNode;
   disabled?: boolean;
-  classname?: string;
+  className?: string;
   variant?:
     | "default"
     | "destructive"
@@ -21,7 +21,7 @@ interface FormSubmitProps {
 export const FormSubmit = ({
   children,
   disabled,
-  classname,
+  className,
   variant = "primary",
 }: FormSubmitProps) => {
   const { pending } = useFormStatus();
@@ -30,7 +30,7 @@ export const FormSubmit = ({
     <Button
       disabled={pending || disabled}
       variant={variant}
-      className={cn(classname)}>
+      className={cn(className)}>
       {children}
     </Button>
   );
