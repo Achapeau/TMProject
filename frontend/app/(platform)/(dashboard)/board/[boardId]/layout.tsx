@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 
-import { BoardNavbar } from "./_components/board-navbar";
+import { BoardNavbar } from "./_components/board/board-navbar";
 
 export async function generateMetadata(props: {
   params: Promise<{ boardId: string }>;
