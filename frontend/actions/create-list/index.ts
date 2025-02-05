@@ -2,11 +2,14 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
+import { ENTITY_TYPE, ACTION } from "@prisma/client";
+
+import { createSafeAction } from "@/lib/create-safe-action";
+import { createAuditLog } from "@/lib/create-audit-log";
+import { db } from "@/lib/db";
 
 import { InputType, ReturnType } from "./types";
 import { CreateList } from "./schema";
-import { createSafeAction } from "@/lib/create-safe-action";
-import { db } from "@/lib/db";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = await auth();
@@ -51,6 +54,13 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         boardId,
         order: newOrder,
       },
+    });
+
+    await createAuditLog({
+      entityTitle: list.title,
+      entityId: list.id,
+      entityType: ENTITY_TYPE.LIST,
+      action: ACTION.CREATE,
     });
   } catch (error) {
     return { error: "Failed to create." };
