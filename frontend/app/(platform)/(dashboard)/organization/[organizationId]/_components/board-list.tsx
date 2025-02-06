@@ -1,12 +1,15 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { HelpCircle, User2 } from "lucide-react";
 
-import { Hint } from "@/components/hint";
-import { FormPopover } from "@/components/form/form-popover";
 import { db } from "@/lib/db";
+import { Hint } from "@/components/hint";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FormPopover } from "@/components/form/form-popover";
+import { getAvailableCount } from "@/lib/org-limit";
+import { MAX_FREE_BOARDS } from "@/constants/boards";
+import { checkSubscription } from "@/lib/subscription";
 
 export const BoardList = async () => {
   const { orgId } = await auth();
@@ -17,6 +20,10 @@ export const BoardList = async () => {
     where: { orgId },
     orderBy: { createdAt: "desc" },
   });
+
+  const availableCount = await getAvailableCount();
+  const isPro = await checkSubscription();
+
   return (
     <div className='space-y-4'>
       <div className='flex items-center font-semibold text-lg text-neutral-700'>
@@ -39,7 +46,11 @@ export const BoardList = async () => {
             role='button'
             className='aspect-video relative h-full w-full bg-muted rounded-md flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition'>
             <p className='text-sm'>Create new board</p>
-            <span className='text-xs'>5 remaining</span>
+            <span className='text-xs'>
+              {isPro
+                ? "Unlimited"
+                : `${MAX_FREE_BOARDS - availableCount} remaining`}
+            </span>
             <Hint
               sideOffset={40}
               description={`
