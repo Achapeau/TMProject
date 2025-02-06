@@ -10,12 +10,24 @@ import { createAuditLog } from "@/lib/create-audit-log";
 
 import { InputType, ReturnType } from "./types";
 import { CreateBoard } from "./schema";
+import { hasAvailableCount, incrementAvailableCount } from "@/lib/org-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = await auth();
 
   if (!userId || !orgId) {
     return { error: "Unauthorized" };
+  }
+
+  const canCreate = await hasAvailableCount();
+  const isPro = await checkSubscription();
+
+  if (!canCreate && !isPro) {
+    return {
+      error:
+        "You have reached your limit of free boards, please upgrade to create more",
+    };
   }
 
   const { title, image } = data;
@@ -47,6 +59,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         imageUserName,
       },
     });
+    if (!isPro) await incrementAvailableCount();
 
     await createAuditLog({
       entityTitle: board.title,

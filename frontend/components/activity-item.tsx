@@ -10,7 +10,7 @@ interface ActivityItemProps {
 
 export const ActivityItem = ({ data }: ActivityItemProps) => {
   return (
-    <li className='flex items-center gap-x-2'>
+    <div className='flex items-center gap-x-2'>
       <Avatar className='h-8 w-8'>
         <AvatarImage src={data.userImage} />
       </Avatar>
@@ -25,6 +25,6 @@ export const ActivityItem = ({ data }: ActivityItemProps) => {
           {format(new Date(data.createdAt), "MMM d, yyyy 'at' h:mm aa")}
         </p>
       </div>
-    </li>
+    </div>
   );
 };
