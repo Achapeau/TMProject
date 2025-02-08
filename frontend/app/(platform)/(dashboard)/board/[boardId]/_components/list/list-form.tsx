@@ -67,7 +67,7 @@ export const ListForm = () => {
             ref={inputRef}
             errors={fieldErrors}
             id='title'
-            classname='text-sm px-2 py-1 h-7 font-medium border-transparent hover:border-input transition'
+            className='text-sm px-2 py-1 h-7 font-medium border-transparent hover:border-input transition'
             placeholder='Enter list title...'
           />
           <input hidden defaultValue={params.boardId} name='boardId' />

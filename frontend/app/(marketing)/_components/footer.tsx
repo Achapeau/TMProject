@@ -17,7 +17,7 @@ export const Footer = () => {
             size='sm'
             variant='ghost'
             aria-label="Conditions d'utilisation">
-            Conditions d'utilisation
+            Conditions d\'utilisation
           </Button>
         </div>
       </div>

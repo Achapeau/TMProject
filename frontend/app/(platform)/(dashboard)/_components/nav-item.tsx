@@ -8,7 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { Activity, CreditCard, Layout, Settings } from "lucide-react";
+import { Activity, Calendar, CreditCard, Layout, Settings } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -55,6 +55,11 @@ export const NavItem = ({
       label: "Billing",
       href: `/organization/${organization.id}/billing`,
       icon: <CreditCard className='h-4 w-4' />,
+    },
+    {
+      label: "Agenda",
+      href: `/organization/${organization.id}/agenda`,
+      icon: <Calendar className='h-4 w-4' />,
     },
   ];
 

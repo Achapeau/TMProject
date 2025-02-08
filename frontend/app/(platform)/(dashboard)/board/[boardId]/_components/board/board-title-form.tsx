@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 import { updateBoard } from "@/actions/update-board";
 import { useAction } from "@/hooks/use-action";
-import { set } from "lodash";
 
 interface BoardTitleFormProps {
   data: Board;
@@ -62,7 +61,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
           id='title'
           onBlur={onBlur}
           defaultValue={title}
-          classname='text-lg font-bold px-[7px] py-1 h-7 bg-transparent focus-visible:outline-none focus-visible:ring-transparent border-none'
+          className='text-lg font-bold px-[7px] py-1 h-7 bg-transparent focus-visible:outline-none focus-visible:ring-transparent border-none'
         />
       </form>
     );

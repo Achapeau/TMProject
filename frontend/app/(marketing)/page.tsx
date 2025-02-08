@@ -45,7 +45,7 @@ const MarketingPage = () => {
         title='Marketing description'>
         Organisez vos tâches personnelles efficacement avec French Task Manager.
         Une application intuitive, responsive et adaptée à vos besoins.
-        Planifiez, gérez et synchronisez vos objectifs en un clin d'œil.
+        Planifiez, gérez et synchronisez vos objectifs en un clin d\'œil.
         Simplifiez votre quotidien avec des fonctionnalités pensées pour vous.
       </div>
       <Button className='mt-6' size='lg' aria-label='Inscription' asChild>

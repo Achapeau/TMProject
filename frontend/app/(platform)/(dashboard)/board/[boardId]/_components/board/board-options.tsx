@@ -12,7 +12,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { on } from "events";
 
 interface BoardOptionsProps {
   id: string;
