@@ -9,9 +9,9 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  // relationMode = "prisma"
 }
 
 model Board {
@@ -36,7 +36,7 @@ model List {
   order Int
 
   boardId String
-  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade, map: "fk_list_board")
 
   cards Card[]
 
@@ -47,16 +47,18 @@ model List {
 }
 
 model Card {
-  id          String  @id @default(uuid())
+  id          String       @id @default(uuid())
   title       String
   order       Int
-  description String? @db.Text
+  description String?      @db.Text
+  workStatus  WORK_STATUS?
 
   listId String
-  list   List   @relation(fields: [listId], references: [id], onDelete: Cascade)
+  list   List   @relation(fields: [listId], references: [id], onDelete: Cascade, map: "fk_card_list")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Event     Event[]
 
   @@index([listId])
 }
@@ -71,6 +73,13 @@ enum ENTITY_TYPE {
   BOARD
   LIST
   CARD
+}
+
+enum WORK_STATUS {
+  TO_DO
+  IN_PROGRESS
+  DONE
+  NEUTRAL
 }
 
 model AuditLog {
@@ -105,4 +114,56 @@ model OrgSubscription {
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+}
+
+model Planning {
+  id     String  @id @default(uuid())
+  userId String  @unique
+  user   AppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  events PlanningEvent[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AppUser {
+  id        String @id @map("userId")
+  firstName String
+  lastName  String
+
+  planning Planning?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          String      @id @default(uuid())
+  title       String
+  description String?     @db.Text
+  startDate   DateTime
+  endDate     DateTime
+  status      WORK_STATUS @default(NEUTRAL)
+
+  planning PlanningEvent[]
+  cardId   String?
+  card     Card?           @relation(fields: [cardId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PlanningEvent {
+  id         String @id @default(uuid())
+  planningId String
+  eventId    String
+
+  planning Planning @relation(fields: [planningId], references: [id], onDelete: Cascade)
+  event    Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([planningId, eventId]) // Empêche les doublons d'association
 }

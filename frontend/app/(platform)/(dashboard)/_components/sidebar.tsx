@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { Calendar, Plus } from "lucide-react";
 import { useLocalStorage } from "usehooks-ts";
 import { useOrganization, useOrganizationList } from "@clerk/nextjs";
 
@@ -60,6 +60,14 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
 
   return (
     <>
+      <div className='font-medium text-xs flex items-center mb-1'>
+        <span className='pl-4'>Global schedule</span>
+        <Button asChild size='icon' variant='ghost' className='ml-auto'>
+          <Link href='/schedule'>
+            <Calendar className='h-4 w-4' />
+          </Link>
+        </Button>
+      </div>
       <div className='font-medium text-xs flex items-center mb-1'>
         <span className='pl-4'>Workspaces</span>
         <Button asChild size='icon' variant='ghost' className='ml-auto'>
