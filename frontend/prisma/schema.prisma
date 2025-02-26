@@ -25,6 +25,7 @@ model Board {
   imageLinkHTML String @db.Text
 
   lists List[]
+  event Event[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -117,26 +118,27 @@ model OrgSubscription {
 }
 
 model Planning {
-  id     String  @id @default(uuid())
-  userId String  @unique
-  user   AppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String @id @default(uuid())
+  userId String @unique
+  // user   AppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  events PlanningEvent[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model AppUser {
-  id        String @id @map("userId")
-  firstName String
-  lastName  String
-
-  planning Planning?
+  planingEvents PlanningEvent[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// model AppUser {
+//   id        String @id @map("userId")
+//   firstName String
+//   lastName  String
+//   orgId     String @map("orgId")
+
+//   planning Planning?
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
 
 model Event {
   id          String      @id @default(uuid())
@@ -145,10 +147,13 @@ model Event {
   startDate   DateTime
   endDate     DateTime
   status      WORK_STATUS @default(NEUTRAL)
+  orgId       String?
+  boardId     String?
 
-  planning PlanningEvent[]
-  cardId   String?
-  card     Card?           @relation(fields: [cardId], references: [id], onDelete: SetNull)
+  planningEvents PlanningEvent[]
+  cardId         String?
+  card           Card?           @relation(fields: [cardId], references: [id], onDelete: SetNull)
+  board          Board?          @relation(fields: [boardId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
